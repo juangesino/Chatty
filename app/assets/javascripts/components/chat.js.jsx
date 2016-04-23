@@ -10,7 +10,6 @@ var Chat = React.createClass({
   },
   componentDidMount: function() {
     this.getMessages();
-    // setInterval(this.getMessages, 2000);
   },
   getMessages: function() {
     $.ajax({
@@ -151,6 +150,9 @@ var ChatForm = React.createClass({
 });
 
 var ChatConversation = React.createClass({
+  componentDidMount: function () {
+    jQuery("time.timeago").timeago();
+  },
   render: function() {
     return (
       <li className={"clearfix " + this.props.orientation}>
@@ -160,7 +162,12 @@ var ChatConversation = React.createClass({
         <div className="chat-body clearfix">
           <div className="header">
             <strong className={ this.props.orientation == 'right' ? "pull-right primary-font" : "primary-font" }>{this.props.user.email}</strong>
-            <small className={ this.props.orientation == 'right' ? "text-muted" : "pull-right text-muted" }><span className="chat-glyphicon glyphicon glyphicon-time"></span>{this.props.time}</small>
+            <small>
+              <span className={ this.props.orientation == 'right' ? "text-muted" : "pull-right text-muted" }>
+                <span className="chat-glyphicon glyphicon glyphicon-time"></span>
+                <time className="timeago" dateTime={this.props.time}>{this.props.time}</time>
+              </span>
+            </small>
           </div>
           <p style={ this.props.orientation == 'right' ? {float: 'right'} : {} }>
             {this.props.message}

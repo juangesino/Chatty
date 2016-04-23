@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
 
   def time
-    "#{distance_of_time_in_words_to_now(self.created_at)} ago"
+    self.created_at.to_time.iso8601
   end
 
 end

@@ -20,3 +20,4 @@
 //= require websocket_rails/main
 //= require bootstrap.min
 //= require react-rails-hot-loader
+//= require jquery.timeago
