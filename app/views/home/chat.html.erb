@@ -67,8 +67,23 @@
                 </p>
               </div>
             </li>
-
-
+            <% @messages.each do |message| %>
+            <li class="<%= message.user == current_user ? 'right' : 'left' %> clearfix">
+              <span class="chat-img pull-<%= message.user == current_user ? 'right' : 'left' %>">
+                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(message.user.email) %>?d=identicon" alt="<%= message.user.email %>" class="img-circle img-responsive"/>
+              </span>
+              <div class="chat-body clearfix">
+                <div class="header">
+                  <strong class="primary-font <%= message.user == current_user ? 'pull-right' : '' %>"><%= message.user == current_user ? 'You' : message.user.email %></strong>
+                  <small class="<%= message.user == current_user ? '' : 'pull-left' %> text-muted">
+                    <span class="chat-glyphicon glyphicon glyphicon-time"></span><%= distance_of_time_in_words_to_now(message.created_at) + ' ago' %></small>
+                </div>
+                <p>
+                  <%= message.text %>
+                </p>
+              </div>
+            </li>
+            <% end %>
 
           </ul>
         </div>
