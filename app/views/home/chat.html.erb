@@ -13,7 +13,7 @@
   //   }
   // );
   var globalVar;
-  var dispatcher = new WebSocketRails('localhost:3000/websocket');
+  var dispatcher = new WebSocketRails('<%= root_url.gsub("http://", '') %>/websocket');
   channel = dispatcher.subscribe('messages');
   channel.bind('new_message', function (data) {
     globalVar(data);
