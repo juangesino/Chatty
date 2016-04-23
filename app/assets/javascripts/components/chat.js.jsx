@@ -13,7 +13,7 @@ var Chat = React.createClass({
   },
   getMessages: function() {
     $.ajax({
-      url: "/ajax/messages",
+      url: this.props.url,
       cache: false,
       success: function(data) {
         this.setState({data: data});
@@ -52,7 +52,7 @@ var Chat = React.createClass({
         <div className="chat-panel panel panel-primary">
           <ChatHeader getMessages={this.getMessages}/>
           <ChatConversations conversations={this.state.data}/>
-          <ChatForm/>
+          <ChatForm url={this.props.url}/>
         </div>
       </div>
   );
@@ -119,7 +119,7 @@ var ChatForm = React.createClass({
     new_message = this.state.text;
     $.ajax({
       method: "POST",
-      url: "/ajax/messages",
+      url: this.props.url,
       dataType: 'json',
       cache: false,
       data: {
