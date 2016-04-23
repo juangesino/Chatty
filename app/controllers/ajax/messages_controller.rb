@@ -5,6 +5,14 @@ module Ajax
 
     def index
       @messages = Message.all
+      render :json => @messages.to_json(
+        :include => {
+          :user => {
+            :methods => [:image]
+          }
+        },
+        :methods => [:time]
+      )
     end
 
     def create

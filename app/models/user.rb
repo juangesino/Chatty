@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :messages
 
   def image
-    "#{Digest::MD5.hexdigest(self.email)}?d=identicon"
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?d=identicon"
   end
 
 end

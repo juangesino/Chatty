@@ -37,10 +37,17 @@
 .chat-panel-body
 {
     overflow-y: scroll;
-    height: 250px;
+    height: 90%;
 }
 
 .chat-img {
   width: 50px;
   height: 50px;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }

@@ -1,98 +1,9 @@
-<%= react_component('Chat') %>
-<div class="container">
+<div class="container vertical-center">
   <div class="row">
     <div class="col-md-12">
-      <div class="chat-panel panel panel-primary">
-        <div class="panel-heading">
-          <span class="chat-glyphicon glyphicon glyphicon-comment"></span>
-          Chat
-          <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-              <span class="chat-glyphicon glyphicon glyphicon-chevron-down"></span>
-            </button>
-            <ul class="dropdown-menu chat-slidedown slidedown">
-              <li>
-                <a href="http://www.jquery2dotnet.com">
-                  <span class="chat-glyphicon glyphicon glyphicon-refresh"></span>Refresh</a>
-              </li>
-              <!-- <li>
-                <a href="http://www.jquery2dotnet.com">
-                  <span class="glyphicon glyphicon-ok-sign"></span>Available</a>
-              </li> -->
-              <!-- <li>
-                <a href="http://www.jquery2dotnet.com">
-                  <span class="glyphicon glyphicon-remove"></span>Busy</a>
-              </li> -->
-              <!-- <li>
-                <a href="http://www.jquery2dotnet.com">
-                  <span class="glyphicon glyphicon-time"></span>
-                  Away</a>
-              </li> -->
-              <li class="divider"></li>
-              <li>
-                <%= link_to('<span class="chat-glyphicon glyphicon glyphicon-off"></span> Sign Out'.html_safe, destroy_user_session_path, :method => :delete) %>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="chat-panel-body panel-body">
-          <ul class="chat">
 
-            <li class="left clearfix">
-              <span class="chat-img pull-left">
-                <img src="/assets/avatar.png" alt="User Avatar" class="img-circle img-responsive"/>
-              </span>
-              <div class="chat-body clearfix">
-                <div class="header">
-                  <strong class="primary-font">Jack Sparrow</strong>
-                  <small class="pull-right text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span>12 mins ago</small>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                </p>
-              </div>
-            </li>
-            <li class="right clearfix">
-              <span class="chat-img pull-right">
-                <img src="/assets/avatar.png" alt="User Avatar" class="img-circle img-responsive"/>;
-              </span>
-              <div class="chat-body clearfix">
-                <div class="header">
-                  <small class=" text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span>13 mins ago</small>
-                  <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                </p>
-              </div>
-            </li>
-            <% @messages.each do |message| %>
-            <li class="<%= message.user == current_user ? 'right' : 'left' %> clearfix">
-              <span class="chat-img pull-<%= message.user == current_user ? 'right' : 'left' %>">
-                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(message.user.email) %>?d=identicon" alt="<%= message.user.email %>" class="img-circle img-responsive"/>
-              </span>
-              <div class="chat-body clearfix">
-                <div class="header">
-                  <strong class="primary-font <%= message.user == current_user ? 'pull-right' : '' %>"><%= message.user == current_user ? 'You' : message.user.email %></strong>
-                  <small class="<%= message.user == current_user ? '' : 'pull-right' %> text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span><%= distance_of_time_in_words_to_now(message.created_at) + ' ago' %></small>
-                </div>
-                <p>
-                  <%= message.text %>
-                </p>
-              </div>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="panel-footer">
-          <div class="input-group">
-            <input id="new_message" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
-            <span class="input-group-btn">
-              <button class="btn btn-warning btn-sm" id="btn-chat" onclick="postMessage()">Send</button>
-            </span>
-          </div>
-        </div>
-      </div>
+      <%= react_component('Chat') %>
+
     </div>
   </div>
 </div>
@@ -103,24 +14,15 @@
   channel.bind('new_message', function (data) {
     console.log(data);
   });
-
-  document.getElementById('new_message').onkeypress = function(e){
-    if (!e) e = window.event;
-    var keyCode = e.keyCode || e.which;
-    if (keyCode == '13'){
-      postMessage();
-    }
-  }
-
-  function postMessage() {
-    $.ajax({
-      method: "POST",
-      url: "/ajax/messages",
-      data: {
-        text: $('#new_message').val()
-      }
-    }).done(function (data) {
-      $('#new_message').val('');
-    });
-  }
+  // 
+  // $.ajax({
+  //   url: "/ajax/messages",
+  //   cache: false,
+  //   success: function(data) {
+  //     console.log(data);
+  //   },
+  //   error: function(xhr, status, err) {
+  //     console.error('500');
+  //   }
+  // });
 </script>
