@@ -3,6 +3,9 @@ var Chat = React.createClass({
     return {data: []};
   },
   componentDidMount: function() {
+    this.getMessages();
+  },
+  getMessages: function() {
     $.ajax({
       url: "/ajax/messages",
       cache: false,
@@ -18,7 +21,7 @@ var Chat = React.createClass({
     return (
       <div className="chatApp">
         <div className="chat-panel panel panel-primary">
-          <ChatHeader/>
+          <ChatHeader getMessages={this.getMessages}/>
           <ChatConversations conversations={this.state.data}/>
           <ChatForm/>
         </div>
@@ -39,12 +42,15 @@ var ChatHeader = React.createClass({
           </button>
           <ul className="dropdown-menu chat-slidedown slidedown">
             <li>
-              <a href="http://www.jquery2dotnet.com">
-                <span className="chat-glyphicon glyphicon glyphicon-refresh"></span>Refresh</a>
+              <a onClick={this.props.getMessages}>
+                <span className="chat-glyphicon glyphicon glyphicon-refresh"></span>Refresh
+              </a>
             </li>
             <li className="divider"></li>
             <li>
-              <span className="chat-glyphicon glyphicon glyphicon-off"></span> Sign Out
+              <a href="#" >
+                <span className="chat-glyphicon glyphicon glyphicon-off"></span> Sign Out
+              </a>
             </li>
           </ul>
         </div>
@@ -81,7 +87,7 @@ var ChatForm = React.createClass({
     this.sendFormData();
   },
   sendFormData: function () {
-    new_message = ReactDOM.findDOMNode(new_message).value;
+    new_message = this.state.text;
     $.ajax({
       method: "POST",
       url: "/ajax/messages",

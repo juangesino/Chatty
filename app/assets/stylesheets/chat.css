@@ -37,7 +37,7 @@
 .chat-panel-body
 {
     overflow-y: scroll;
-    min-height: 90%;
+    height: 80vh;
 }
 
 .chat-img {
