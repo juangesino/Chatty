@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages
+
+  def image
+    "#{Digest::MD5.hexdigest(self.email)}?d=identicon"
+  end
+
 end

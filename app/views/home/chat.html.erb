@@ -84,15 +84,13 @@
               </div>
             </li>
             <% end %>
-
           </ul>
         </div>
         <div class="panel-footer">
           <div class="input-group">
-            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
+            <input id="new_message" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
             <span class="input-group-btn">
-              <button class="btn btn-warning btn-sm" id="btn-chat">
-                Send</button>
+              <button class="btn btn-warning btn-sm" id="btn-chat" onclick="postMessage()">Send</button>
             </span>
           </div>
         </div>
@@ -100,3 +98,31 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var dispatcher = new WebSocketRails('localhost:3000/websocket');
+  channel = dispatcher.subscribe('messages');
+  channel.bind('new_message', function (data) {
+    console.log(data);
+  });
+
+  document.getElementById('new_message').onkeypress = function(e){
+    if (!e) e = window.event;
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == '13'){
+      postMessage();
+    }
+  }
+
+  function postMessage() {
+    $.ajax({
+      method: "POST",
+      url: "/ajax/messages",
+      data: {
+        text: $('#new_message').val()
+      }
+    }).done(function (data) {
+      $('#new_message').val('');
+    });
+  }
+</script>
