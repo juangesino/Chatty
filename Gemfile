@@ -47,3 +47,6 @@ end
 
 # Webscokets
 gem 'websocket-rails'
+
+# Devise
+gem 'devise'
