@@ -53,3 +53,6 @@ gem 'devise'
 
 # Devise Bootstrap
 gem 'devise-bootstrap-views'
+
+# React
+gem 'react-rails', '~> 1.6.0'

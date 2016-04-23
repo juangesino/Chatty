@@ -41,4 +41,10 @@ Rails.application.configure do
 
   # websocket-rails
   config.middleware.delete Rack::Lock
+
+  # React
+  Chatty::Application.configure do
+    config.react.variant = :development
+    config.react.addons = true
+  end
 end
