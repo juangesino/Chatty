@@ -1,6 +1,7 @@
 var Chat = React.createClass({
   getInitialState: function() {
-    return {data: []};
+    // Remove last_message after implementing websockets
+    return {data: [], last_message: 0};
   },
   componentDidMount: function() {
     this.getMessages();
@@ -11,10 +12,11 @@ var Chat = React.createClass({
       url: "/ajax/messages",
       cache: false,
       success: function(data) {
-        this.setState({data: data});
-        // TODO: Scroll to bottom here
+        // TODO: Remove this after implementing websockets
+        // if(this.state.last_message != data[data.length - 1].id && this.state.last_message != 0 && data[data.length - 1].user.id != this.props.user_id) { this.sendNotification(data[data.length - 1]); };
+        // Remove last_message after implementing websockets
+        this.setState({data: data, last_message: data[data.length - 1].id});
         $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
-
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -24,6 +26,20 @@ var Chat = React.createClass({
   receiveMessage: function(message) {
     this.setState({data: this.state.data.concat([message])});
   },
+  // sendNotification: function(message) {
+  //   if (Notification.permission !== "granted")
+  //     Notification.requestPermission();
+  //   else {
+  //     var notification = new Notification(message.user.email, {
+  //       icon: message.user.image,
+  //       body: message.text,
+  //     });
+  //     notification.onclick = function () {
+  //       window.focus();
+  //       notification.close();
+  //     };
+  //   }
+  // },
   render: function() {
     return (
       <div className="chatApp">
@@ -55,7 +71,7 @@ var ChatHeader = React.createClass({
             </li>
             <li className="divider"></li>
             <li>
-              <a href="#" >
+              <a href="/users/sign_out" data-method="delete" rel="nofollow">
                 <span className="chat-glyphicon glyphicon glyphicon-off"></span> Sign Out
               </a>
             </li>
@@ -139,7 +155,7 @@ var ChatConversation = React.createClass({
             <strong className={ this.props.orientation == 'right' ? "pull-right primary-font" : "primary-font" }>{this.props.user.email}</strong>
             <small className={ this.props.orientation == 'right' ? "text-muted" : "pull-right text-muted" }><span className="chat-glyphicon glyphicon glyphicon-time"></span>{this.props.time}</small>
           </div>
-          <p>
+          <p style={ this.props.orientation == 'right' ? {float: 'right'} : {} }>
             {this.props.message}
           </p>
         </div>

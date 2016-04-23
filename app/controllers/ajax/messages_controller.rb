@@ -4,7 +4,7 @@ module Ajax
     before_action :set_message, only: [:show, :edit, :update, :destroy]
 
     def index
-      @messages = MessageDecorator.decorate_collection(Message.all)
+      @messages = MessageDecorator.decorate_collection(Message.last(10))
       render :json => @messages.to_json(
         :include => {
           :user => {
