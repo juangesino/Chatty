@@ -13,11 +13,11 @@
   //     Notification.requestPermission();
   //   }
   // );
-
+  var globalVar;
   var dispatcher = new WebSocketRails('localhost:3000/websocket');
   channel = dispatcher.subscribe('messages');
   channel.bind('new_message', function (data) {
-    console.log(data);
+    globalVar(data);
   });
 
   // $.ajax({

@@ -1,21 +1,23 @@
+
 var Chat = React.createClass({
   getInitialState: function() {
-    // Remove last_message after implementing websockets
-    return {data: [], last_message: 0};
+    return {data: []};
+  },
+  componentWillMount(){
+    globalVar = (message) => {
+      this.receiveMessage(message);
+    };
   },
   componentDidMount: function() {
     this.getMessages();
-    setInterval(this.getMessages, 2000);
+    // setInterval(this.getMessages, 2000);
   },
   getMessages: function() {
     $.ajax({
       url: "/ajax/messages",
       cache: false,
       success: function(data) {
-        // TODO: Remove this after implementing websockets
-        // if(this.state.last_message != data[data.length - 1].id && this.state.last_message != 0 && data[data.length - 1].user.id != this.props.user_id) { this.sendNotification(data[data.length - 1]); };
-        // Remove last_message after implementing websockets
-        this.setState({data: data, last_message: data[data.length - 1].id});
+        this.setState({data: data});
         $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
       }.bind(this),
       error: function(xhr, status, err) {
@@ -24,7 +26,12 @@ var Chat = React.createClass({
     });
   },
   receiveMessage: function(message) {
+    if(message.user.id != this.props.user_id) {
+      message.orientation = 'left';
+    }
     this.setState({data: this.state.data.concat([message])});
+    $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
+    // this.sendNotification(message);
   },
   // sendNotification: function(message) {
   //   if (Notification.permission !== "granted")
