@@ -50,3 +50,6 @@ gem 'websocket-rails'
 
 # Devise
 gem 'devise'
+
+# Devise Bootstrap
+gem 'devise-bootstrap-views'
