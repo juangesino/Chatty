@@ -4,6 +4,7 @@ var Chat = React.createClass({
   },
   componentDidMount: function() {
     this.getMessages();
+    setInterval(this.getMessages, 2000);
   },
   getMessages: function() {
     $.ajax({
@@ -11,11 +12,15 @@ var Chat = React.createClass({
       cache: false,
       success: function(data) {
         this.setState({data: data});
+        // TODO: Scroll to bottom here
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+  },
+  receiveMessage: function(message) {
+    this.setState({data: this.state.data.concat([message])});
   },
   render: function() {
     return (
