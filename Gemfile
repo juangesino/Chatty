@@ -33,6 +33,7 @@ gem 'draper', '~> 1.3'
 
 # Deployment
 gem 'puma'
+gem 'rails_12factor', group: :production
 
 group :development do
   # Errors
