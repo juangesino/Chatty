@@ -13,6 +13,8 @@ var Chat = React.createClass({
       success: function(data) {
         this.setState({data: data});
         // TODO: Scroll to bottom here
+        $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
+
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
