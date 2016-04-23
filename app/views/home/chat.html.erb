@@ -44,8 +44,7 @@
               <div class="chat-body clearfix">
                 <div class="header">
                   <strong class="primary-font">Jack Sparrow</strong>
-                  <small class="pull-right text-muted">
-                    <span class="chat-glyphicon glyphicon glyphicon-time"></span>12 mins ago</small>
+                  <small class="pull-right text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span>12 mins ago</small>
                 </div>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
@@ -58,8 +57,7 @@
               </span>
               <div class="chat-body clearfix">
                 <div class="header">
-                  <small class=" text-muted">
-                    <span class="chat-glyphicon glyphicon glyphicon-time"></span>13 mins ago</small>
+                  <small class=" text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span>13 mins ago</small>
                   <strong class="pull-right primary-font">Bhaumik Patel</strong>
                 </div>
                 <p>
@@ -75,8 +73,7 @@
               <div class="chat-body clearfix">
                 <div class="header">
                   <strong class="primary-font <%= message.user == current_user ? 'pull-right' : '' %>"><%= message.user == current_user ? 'You' : message.user.email %></strong>
-                  <small class="<%= message.user == current_user ? '' : 'pull-left' %> text-muted">
-                    <span class="chat-glyphicon glyphicon glyphicon-time"></span><%= distance_of_time_in_words_to_now(message.created_at) + ' ago' %></small>
+                  <small class="<%= message.user == current_user ? '' : 'pull-right' %> text-muted"><span class="chat-glyphicon glyphicon glyphicon-time"></span><%= distance_of_time_in_words_to_now(message.created_at) + ' ago' %></small>
                 </div>
                 <p>
                   <%= message.text %>
