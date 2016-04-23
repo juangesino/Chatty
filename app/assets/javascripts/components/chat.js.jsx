@@ -1,7 +1,6 @@
 var Chat = React.createClass({
-
   render: function() {
-    return <div className="chatApp" />;
+    return <div className="chatApp">  
+    </div>;
   }
-
 });
