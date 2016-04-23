@@ -59,3 +59,6 @@ gem 'react-rails', '~> 1.6.0'
 
 # React Hot Loader
 gem 'react-rails-hot-loader'
+
+# Draper
+gem 'draper', '~> 1.3'

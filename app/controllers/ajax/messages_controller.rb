@@ -4,14 +4,14 @@ module Ajax
     before_action :set_message, only: [:show, :edit, :update, :destroy]
 
     def index
-      @messages = Message.all
+      @messages = MessageDecorator.decorate_collection(Message.all)
       render :json => @messages.to_json(
         :include => {
           :user => {
             :methods => [:image]
           }
         },
-        :methods => [:time]
+        :methods => [:time, :orientation]
       )
     end
 
@@ -19,8 +19,8 @@ module Ajax
       @message = Message.new(message_params)
       @message.user = current_user
       if @message.save
-        WebsocketRails[:messages].trigger('new_message', @message.as_json(
-          :methods => [:time_ago],
+        WebsocketRails[:messages].trigger('new_message', @message.decorate.as_json(
+          :methods => [:time, :orientation],
           :include => {
             :user => {
               :methods => [:image]

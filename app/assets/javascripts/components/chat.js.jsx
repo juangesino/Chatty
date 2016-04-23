@@ -60,7 +60,7 @@ var ChatConversations = React.createClass({
         <ul className="chat">
           {this.props.conversations.map(function(conversation) {
             return (
-              <ChatConversation key={conversation.id} user={conversation.user} message={conversation.text} orientation='left' time={conversation.time} />
+              <ChatConversation key={conversation.id} user={conversation.user} message={conversation.text} orientation={conversation.orientation} time={conversation.time} />
             );
           })}
         </ul>
@@ -103,7 +103,7 @@ var ChatForm = React.createClass({
       <div className="panel-footer">
         <form action="" onSubmit={this.handleSubmit}>
           <div className="input-group">
-            <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} />
+            <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" />
             <span className="input-group-btn">
               <button className="btn btn-warning btn-sm" id="btn-chat" type="submit">Send</button>
             </span>
