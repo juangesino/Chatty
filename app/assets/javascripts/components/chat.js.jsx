@@ -152,6 +152,10 @@ var ChatForm = React.createClass({
 });
 
 var ChatConversation = React.createClass({
+  rawMarkup: function() {
+    var rawMarkup = md.render(this.props.message.toString(), {sanitize: true});
+    return { __html: rawMarkup };
+  },
   componentDidMount: function () {
     jQuery("time.timeago").timeago();
   },
@@ -171,9 +175,9 @@ var ChatConversation = React.createClass({
               </span>
             </small>
           </div>
-          <p style={ this.props.orientation == 'right' ? {float: 'right'} : {} }>
-            {this.props.message}
-          </p>
+          <div style={ this.props.orientation == 'right' ? {float: 'right'} : {} }>
+            <span dangerouslySetInnerHTML={this.rawMarkup()} />
+          </div>
         </div>
       </li>
     );
