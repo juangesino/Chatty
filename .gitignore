@@ -18,6 +18,3 @@
 
 # Ignore .idea files
 .idea/
-
-# Bower
-/bower_components/
