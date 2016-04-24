@@ -50,7 +50,7 @@ var Chat = React.createClass({
     return (
       <div className="chatApp">
         <div className="chat-panel panel panel-primary">
-          <ChatHeader getMessages={this.getMessages}/>
+          <ChatHeader getMessages={this.getMessages} title={this.props.title}/>
           <ChatConversations conversations={this.state.data}/>
           <ChatForm url={this.props.url}/>
         </div>
@@ -64,7 +64,7 @@ var ChatHeader = React.createClass({
     return (
       <div className="panel-heading">
         <span className="chat-glyphicon glyphicon glyphicon-comment"></span>
-         <span> Chat</span>
+         <span> {this.props.title}</span>
         <div className="btn-group pull-right">
           <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
             <span className="chat-glyphicon glyphicon glyphicon-chevron-down"></span>
@@ -140,7 +140,7 @@ var ChatForm = React.createClass({
           <div className="input-group">
             <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" />
             <span className="input-group-btn">
-              <button className="btn btn-warning btn-sm" id="btn-chat" type="submit">Send</button>
+              <button className="btn btn-warning btn-sm btn-chat" id="btn-chat" type="submit">Send</button>
             </span>
           </div>
         </form>

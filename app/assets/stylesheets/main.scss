@@ -1,0 +1,16 @@
+$primary-color: #253237;
+$secondary-color: #3C787E;
+$tertiary-color: #9DB4C0;
+$other-color: #C2DFE3;
+
+$white-color: #FFF;
+
+.chat-panel {
+  border-color: $secondary-color;
+
+}
+
+.chat-panel > .panel-heading {
+  background-color: $secondary-color !important;
+  border-color: $secondary-color !important;
+}
