@@ -2,9 +2,10 @@ module Ajax
   class ChannelsController < Ajax::AjaxController
     respond_to :json
     before_action :set_channel, only: [:show, :edit, :update, :destroy]
+    before_action :set_group
 
     def index
-      @channels = current_user.group.channels
+      @channels = @group.channels
       render :json => @channels.to_json
     end
 
@@ -21,12 +22,19 @@ module Ajax
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
       def set_channel
         @channel = Channel.find(params[:id])
       end
 
-      # Never trust parameters from the scary internet, only allow the white list through.
+      def set_group
+        if session[:group_id]
+          @group = Group.find(session[:group_id])
+        else
+          @group = current_user.groups.first
+          session[:group_id] = @group.id
+        end
+      end
+
       def channel_params
         params.permit(:name)
       end

@@ -24,5 +24,11 @@ module Chatty
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.to_prepare do
+        Devise::SessionsController.skip_before_filter :set_group
+        Devise::RegistrationsController.skip_before_filter :set_group
+    end
+
   end
 end

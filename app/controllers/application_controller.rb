@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :check_group
+
+  def check_group
+    if current_user.groups.empty?
+      redirect_to join_group_path
+    end
+  end
+
 end

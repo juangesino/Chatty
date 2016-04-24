@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages
-  belongs_to :group
+  has_and_belongs_to_many(:groups, :join_table => "group_users", :foreign_key => "user_id", :association_foreign_key => "group_id")
 
   def image
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?d=identicon"

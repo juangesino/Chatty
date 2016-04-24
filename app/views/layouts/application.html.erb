@@ -28,7 +28,7 @@
     <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom:0;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= alert %></div>
   <% end %>
 
-  <h6 style="position: fixed; right: 0; top: 100px; padding: 10px">Group token: <strong><%= @group.code %></strong></h6>
+  <h6 style="position: fixed; right: 0; top: 100px; padding: 10px">Group name: <strong><%= @group.name %></strong><br>Group token: <strong><%= @group.code %></strong></h6>
 
   <%= react_component('LeftNavBar',
     title: @group.name,
@@ -36,7 +36,9 @@
     user: current_user,
     image: current_user.image,
     url: '/ajax/channels',
-    current_channel: @channel || {id: 1}
+    current_channel: @channel || {id: 1},
+    current_group: @group.id,
+    groups: current_user.groups
   )%>
 
   <%= yield %>

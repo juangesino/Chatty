@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   end
 
   resources :channels
-  # resources :groups
+
   get '/groups/join' => 'groups#join', as: :join_group
+  get '/groups/switch' => 'groups#switch', as: :switch_group
+  # resources :groups
 
   devise_for :users
+
   root 'channels#show'
 
 end

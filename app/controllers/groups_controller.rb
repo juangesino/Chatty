@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   # before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :check_group
+  before_action :check_group, only: [:join]
+  skip_before_filter :set_group, only: [:switch]
 
   layout 'not_signed_in'
 
@@ -17,7 +18,7 @@ class GroupsController < ApplicationController
       @group = Group.new(:name => params[:name], :code => Devise.friendly_token[0,6])
       respond_to do |format|
         if @group.save
-          current_user.update(:group => @group)
+          @group.users << current_user
           Channel.create(:name => 'general', :group => @group)
           Channel.create(:name => 'random', :group => @group)
           format.html { redirect_to root_path, notice: 'Group was successfully created.' }
@@ -26,6 +27,13 @@ class GroupsController < ApplicationController
         end
       end
     end
+  end
+
+  def switch
+    if params[:group_id].present? && Group.find(params[:group_id]).present?
+      session[:group_id] = params[:group_id]
+    end
+    redirect_to root_path
   end
 
   # def index
@@ -82,7 +90,7 @@ class GroupsController < ApplicationController
     end
 
     def check_group
-      if current_user.group.present?
+      if !current_user.groups.empty?
         redirect_to root_path
       end
     end

@@ -2,7 +2,6 @@ class ChannelsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_group
-
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
 
   # def index
@@ -63,14 +62,17 @@ class ChannelsController < ApplicationController
       end
     end
 
-    def set_group
-      @group = current_user.group
-      if !@group.present?
-        redirect_to join_group_path
-      end
-    end
-
     def channel_params
       params.require(:channel).permit(:name)
     end
+
+    def set_group
+      if session[:group_id]
+        @group = Group.find(session[:group_id])
+      else
+        @group = current_user.groups.first
+        session[:group_id] = @group.id
+      end
+    end
+
 end
