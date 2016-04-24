@@ -55,7 +55,7 @@ class ChannelsController < ApplicationController
       if params[:id].present?
         @channel = Channel.find(params[:id])
       else
-        @channel = Channel.find_by_name('ChattyGeneral')
+        @channel = Channel.find_by_name('public')
       end
     end
 

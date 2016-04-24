@@ -1,3 +1,3 @@
-if !Channel.find_by_name('ChattyGeneral').present?
-  Channel.create(:name => 'ChattyGeneral')
+if !Channel.find_by_name('public').present?
+  Channel.create(:name => 'public')
 end
