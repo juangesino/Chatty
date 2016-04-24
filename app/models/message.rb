@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
+  belongs_to :channel
 
   validates :text, presence: true
 

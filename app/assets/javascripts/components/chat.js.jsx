@@ -13,14 +13,14 @@ var Chat = React.createClass({
   },
   getMessages: function() {
     $.ajax({
-      url: this.props.url,
+      url: this.props.get_url,
       cache: false,
       success: function(data) {
         this.setState({data: data});
         $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(this.props.get_url, status, err.toString());
       }.bind(this)
     });
   },
@@ -52,7 +52,7 @@ var Chat = React.createClass({
         <div className="chat-panel panel panel-primary">
           <ChatHeader getMessages={this.getMessages} title={this.props.title}/>
           <ChatConversations conversations={this.state.data}/>
-          <ChatForm url={this.props.url}/>
+          <ChatForm post_url={this.props.post_url} channel_id={this.props.channel_id}/>
         </div>
       </div>
   );
@@ -117,19 +117,21 @@ var ChatForm = React.createClass({
   },
   sendFormData: function () {
     new_message = this.state.text;
+    channel_id = this.props.channel_id;
     $.ajax({
       method: "POST",
-      url: this.props.url,
+      url: this.props.post_url,
       dataType: 'json',
       cache: false,
       data: {
-        text: new_message
+        text: new_message,
+        channel_id: channel_id
       },
       success: function(data) {
         this.setState({text: ''});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(this.props.post_url, status, err.toString());
       }.bind(this)
     });
   },
