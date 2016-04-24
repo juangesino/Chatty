@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
 
   resources :channels
+  # resources :groups
+  get '/groups/join' => 'groups#join', as: :join_group
 
   devise_for :users
   root 'channels#show'

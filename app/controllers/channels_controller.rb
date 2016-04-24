@@ -1,4 +1,8 @@
 class ChannelsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :set_group
+
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
 
   # def index
@@ -55,7 +59,14 @@ class ChannelsController < ApplicationController
       if params[:id].present?
         @channel = Channel.find(params[:id])
       else
-        @channel = Channel.find_by_name('public')
+        @channel = Channel.where(:name => 'general', :group => @group).first
+      end
+    end
+
+    def set_group
+      @group = current_user.group
+      if !@group.present?
+        redirect_to join_group_path
       end
     end
 

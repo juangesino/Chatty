@@ -4,7 +4,7 @@ module Ajax
     before_action :set_channel, only: [:show, :edit, :update, :destroy]
 
     def index
-      @channels = Channel.all
+      @channels = current_user.group.channels
       render :json => @channels.to_json
     end
 

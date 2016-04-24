@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages
+  belongs_to :group
 
   def image
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?d=identicon"

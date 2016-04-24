@@ -1,0 +1,69 @@
+<div class="panel panel-default devise-bs">
+  <div class="panel-heading">
+    <h4>Join a group</h4>
+  </div>
+  <div class="panel-body">
+    <button class="btn btn-info btn-block btn-lg" data-toggle="modal" data-target="#joinGroupModal" type="button"> Join an existing group </button>
+    <br>
+    <button class="btn btn-success btn-block btn-lg" data-toggle="modal" data-target="#createGroupModal" type="button"> Create a new group </button>
+  </div>
+</div>
+
+<div class="modal fade" id="joinGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Join an existing group</h4>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 50px;">To join an existing group you will need an access token.</p>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputEmail3">Token</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Token" name="token" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-info" style="float: right;">Join</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Create a new group</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputEmail3">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-info" style="float: right;">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
