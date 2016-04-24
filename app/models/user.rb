@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_and_belongs_to_many(:groups, :join_table => "group_users", :foreign_key => "user_id", :association_foreign_key => "group_id")
 
   def image

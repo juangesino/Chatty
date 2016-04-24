@@ -90,6 +90,9 @@ var UserInfoModal = React.createClass({
                     }
                   </select>
                 </div>
+
+                <a className="btn btn-success btn-block btn-lg" href="/groups/join"><i className="fa fa-plus"></i> Join a group</a>
+
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

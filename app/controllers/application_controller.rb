@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_group
 
   def check_group
-    if current_user && current_user.groups.empty?
+    if current_user.present? && current_user.groups.empty?
       redirect_to join_group_path
     end
   end

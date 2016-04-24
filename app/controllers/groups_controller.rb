@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   # before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :check_group, only: [:join]
   skip_before_filter :set_group, only: [:switch]
+  skip_before_filter :check_group, only: [:join]
 
   layout 'not_signed_in'
 
@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
     if params[:token].present?
       @group = Group.find_by_code(params[:token])
       if @group.present?
-        current_user.update(:group => @group)
+        @group.users << current_user
         redirect_to root_path, notice: 'Joined group successfully.'
       else
         redirect_to join_group_path, alert: 'Invalid token.'
@@ -27,6 +27,7 @@ class GroupsController < ApplicationController
         end
       end
     end
+
   end
 
   def switch
@@ -87,12 +88,6 @@ class GroupsController < ApplicationController
   private
     def set_group
       @group = Group.find(params[:id])
-    end
-
-    def check_group
-      if !current_user.groups.empty?
-        redirect_to root_path
-      end
     end
 
     def group_params
