@@ -165,6 +165,9 @@ var ChatConversation = React.createClass({
   },
   componentDidMount: function () {
     jQuery("time.timeago").timeago();
+    $('p').linkify({
+      target: "_blank"
+    });
   },
   render: function() {
     return (
