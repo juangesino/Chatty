@@ -147,7 +147,7 @@ var ChatForm = React.createClass({
       <div className="panel-footer">
         <form action="" onSubmit={this.handleSubmit}>
           <div className="input-group">
-            <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" onKeyDown={this.handleKeyDown} />
+            <input autoFocus id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" onKeyDown={this.handleKeyDown} />
             <span className="input-group-btn">
               <button className="btn btn-warning btn-sm btn-chat" id="btn-chat" type="submit">Send</button>
             </span>
