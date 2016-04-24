@@ -26,8 +26,8 @@ module Chatty
     config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
-        Devise::SessionsController.skip_before_filter :set_group
-        Devise::RegistrationsController.skip_before_filter :set_group
+        Devise::SessionsController.skip_before_filter :check_group
+        Devise::RegistrationsController.skip_before_filter :check_group
     end
 
   end
