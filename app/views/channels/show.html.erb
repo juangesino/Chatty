@@ -2,7 +2,13 @@
 <div class="container vertical-center">
   <div class="row">
     <div class="col-md-12">
-      <%= react_component('Chat', user_id: current_user.id, get_url: "/ajax/channels/#{@channel.id}", post_url: "/ajax/messages", title: @channel.name.capitalize, channel_id: @channel.id ) %>
+      <%= react_component('Chat',
+        user_id: current_user.id, 
+        get_url: "/ajax/channels/#{@channel.id}",
+        post_url: "/ajax/messages",
+        title: @channel.name.capitalize,
+        channel_id: @channel.id
+      )%>
     </div>
   </div>
 </div>

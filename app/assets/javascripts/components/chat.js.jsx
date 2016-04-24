@@ -27,6 +27,7 @@ var Chat = React.createClass({
   receiveMessage: function(message) {
     if(message.user.id != this.props.user_id) {
       message.orientation = 'left';
+      this.setState({last_message: message.text});
     }
     this.setState({data: this.state.data.concat([message])});
     $('#scroll-panel').animate({scrollTop: $('#scroll-panel').height()});
@@ -107,7 +108,7 @@ var ChatConversations = React.createClass({
 
 var ChatForm = React.createClass({
   getInitialState: function() {
-    return {text: ''};
+    return {text: '', last_message: ''};
   },
   handleTextChange: function(e) {
     this.setState({text: e.target.value});
@@ -115,6 +116,11 @@ var ChatForm = React.createClass({
   handleSubmit: function(event) {
     event.preventDefault();
     this.sendFormData();
+  },
+  handleKeyDown: function (event) {
+    if(event.keyCode == 38) {
+      this.setState({text: this.state.last_message});
+    }
   },
   sendFormData: function () {
     new_message = this.state.text;
@@ -129,7 +135,7 @@ var ChatForm = React.createClass({
         channel_id: channel_id
       },
       success: function(data) {
-        this.setState({text: ''});
+        this.setState({text: '', last_message: new_message});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.post_url, status, err.toString());
@@ -141,7 +147,7 @@ var ChatForm = React.createClass({
       <div className="panel-footer">
         <form action="" onSubmit={this.handleSubmit}>
           <div className="input-group">
-            <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" />
+            <input id="new_message" name="new_message" type="text" className="form-control input-sm" placeholder="Type your message here..." value={this.state.text} onChange={this.handleTextChange} autoComplete="off" onKeyDown={this.handleKeyDown} />
             <span className="input-group-btn">
               <button className="btn btn-warning btn-sm btn-chat" id="btn-chat" type="submit">Send</button>
             </span>
