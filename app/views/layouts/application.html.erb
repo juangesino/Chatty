@@ -4,9 +4,13 @@
   <title>Chatty</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="//twemoji.maxcdn.com/2/twemoji.min.js"></script>
   <script src="https://cdn.jsdelivr.net/markdown-it/6.0.1/markdown-it.min.js"></script>
   <script>
     var md = window.markdownit().use(window.markdownitEmoji);
+    md.renderer.rules.emoji = function(token, idx) {
+      return twemoji.parse(token[idx].content);
+    };
   </script>
   <%= csrf_meta_tags %>
 </head>
