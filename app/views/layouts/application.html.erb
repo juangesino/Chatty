@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://cdn.jsdelivr.net/markdown-it/6.0.1/markdown-it.min.js"></script>
   <script>
-    var md = window.markdownit();
+    var md = window.markdownit().use(window.markdownitEmoji);
   </script>
   <%= csrf_meta_tags %>
 </head>

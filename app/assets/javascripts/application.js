@@ -21,3 +21,5 @@
 //= require bootstrap.min
 //= require react-rails-hot-loader
 //= require jquery.timeago
+// Bower packages
+//= require markdown-it-emoji/dist/markdown-it-emoji.min
