@@ -7,6 +7,7 @@ $white-color: #FFF;
 
 .chat-panel {
   border-color: $secondary-color;
+  margin-bottom: 0 !important;
 
 }
 
@@ -17,4 +18,10 @@ $white-color: #FFF;
 
 .emoji {
   height: 1.2em;
+}
+
+.cheats {
+  font-size: 8pt;
+  margin: 0;
+  color: grey;
 }

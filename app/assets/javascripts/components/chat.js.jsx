@@ -54,6 +54,7 @@ var Chat = React.createClass({
           <ChatConversations conversations={this.state.data}/>
           <ChatForm post_url={this.props.post_url} channel_id={this.props.channel_id}/>
         </div>
+        <a href="http://www.emoji-cheat-sheet.com/" className="cheats" target="_blank">Emoji Cheat Sheet</a>
       </div>
   );
   }
