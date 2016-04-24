@@ -64,22 +64,22 @@ var ChatHeader = React.createClass({
   render: function() {
     return (
       <div className="panel-heading">
-        <span className="chat-glyphicon glyphicon glyphicon-comment"></span>
+        <span className="chat-glyphicon fa fa-comment"></span>
          <span> {this.props.title}</span>
         <div className="btn-group pull-right">
           <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-            <span className="chat-glyphicon glyphicon glyphicon-chevron-down"></span>
+            <span className="chat-glyphicon fa fa-chevron-down"></span>
           </button>
           <ul className="dropdown-menu chat-slidedown slidedown">
             <li>
               <a onClick={this.props.getMessages}>
-                <span className="chat-glyphicon glyphicon glyphicon-refresh"></span>Refresh
+                <span className="chat-glyphicon fa fa-refresh"></span>Refresh
               </a>
             </li>
             <li className="divider"></li>
             <li>
               <a href="/users/sign_out" data-method="delete" rel="nofollow">
-                <span className="chat-glyphicon glyphicon glyphicon-off"></span> Sign Out
+                <span className="chat-glyphicon fa fa-sign-out"></span> Sign Out
               </a>
             </li>
           </ul>
@@ -171,7 +171,7 @@ var ChatConversation = React.createClass({
             <strong className={ this.props.orientation == 'right' ? "pull-right primary-font" : "primary-font" }>{this.props.user.email}</strong>
             <small>
               <span className={ this.props.orientation == 'right' ? "text-muted" : "pull-right text-muted" }>
-                <span className="chat-glyphicon glyphicon glyphicon-time"></span>
+                <span className="chat-glyphicon fa fa-clock-o"></span>
                 <time className="timeago" dateTime={this.props.time}>{this.props.time}</time>
               </span>
             </small>

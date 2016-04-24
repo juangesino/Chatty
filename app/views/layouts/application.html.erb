@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% if @channel.present? %>
+    <title>Chatty<%= " - ##{@channel.name.capitalize}" %></title>
+  <% else %>
   <title>Chatty</title>
+  <% end %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="//twemoji.maxcdn.com/2/twemoji.min.js"></script>
   <script src="https://cdn.jsdelivr.net/markdown-it/6.0.1/markdown-it.min.js"></script>

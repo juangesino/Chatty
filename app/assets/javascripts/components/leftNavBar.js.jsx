@@ -48,7 +48,7 @@ var LeftNavBarItem = React.createClass({
   render: function() {
     return (
       <li className={this.props.active ? "active" : ""}>
-        <a href={this.props.url}><span className="channel-hash">#</span> {this.props.children}</a>
+        <a href={this.props.url}><span className="channel-hash"><i className="fa fa-hashtag"></i></span> {this.props.children}</a>
       </li>
     );
   }

@@ -9,7 +9,8 @@ gem 'pg', group: :production
 # Assets
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bower' 
+gem 'bower'
+gem 'font-awesome-sass'
 
 # Templating and front
 gem 'coffee-rails', '~> 4.1.0'
