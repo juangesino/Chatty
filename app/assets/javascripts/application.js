@@ -26,3 +26,5 @@
 //= require markdown-it-emoji/dist/markdown-it-emoji.min
 //= require linkifyjs/linkify.min
 //= require linkifyjs/linkify-jquery.min
+//= require bootstrap-material-design/dist/js/material.min
+//= require bootstrap-material-design/dist/js/ripples.min

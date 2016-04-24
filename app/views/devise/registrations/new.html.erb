@@ -17,8 +17,10 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
-      <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+      <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary", style: 'float: right;' %>
     <% end %>
   </div>
 </div>
-<%= render "devise/shared/links" %>
+<div style="margin: 10px;">
+  <%= render "devise/shared/links" %>
+</div>

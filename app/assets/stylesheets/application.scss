@@ -16,6 +16,9 @@
  *= require devise_bootstrap_views
  *= require main
  *= require side-bar
+ *= require bootstrap-material-design/dist/css/bootstrap-material-design.min
+ *= require bootstrap-material-design/dist/css/ripples.min
+
   @import "font-awesome-sprockets";
   @import "font-awesome";
  */

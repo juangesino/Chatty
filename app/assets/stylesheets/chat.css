@@ -38,6 +38,13 @@
 {
     overflow-y: scroll;
     height: 80vh;
+    margin-right: 0;
+    width: 100%;
+}
+
+.chat-panel input:focus {
+  border: none;
+  box-shadow: none;
 }
 
 .chat-img {
@@ -45,9 +52,17 @@
   height: 50px;
 }
 
+.panel-heading .btn-group {
+  margin: 0;
+}
+
 .vertical-center {
   min-height: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
+}
+
+#btn-chat {
+  color: white;
 }
