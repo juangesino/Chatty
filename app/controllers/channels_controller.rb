@@ -67,7 +67,7 @@ class ChannelsController < ApplicationController
     end
 
     def set_group
-      if session[:group_id]
+      if session[:group_id].present? && !Group.where(id: session[:group_id]).empty?
         @group = Group.find(session[:group_id])
       else
         @group = current_user.groups.first

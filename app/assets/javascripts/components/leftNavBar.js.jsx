@@ -36,6 +36,9 @@ var LeftNavBar = React.createClass({
                 );
               })
             }
+            <li>
+              <a href="#" data-toggle="modal" data-target="#createChannel">Add new channel</a>
+            </li>
             <LeftNavBarUserInfo user={this.props.user} image={this.props.image}/>
           </ul>
         </div>
@@ -97,6 +100,34 @@ var UserInfoModal = React.createClass({
               <div className="modal-footer">
                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" className="btn btn-primary">Switch</button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+});
+
+var NewChannelModal = React.createClass({
+  render: function () {
+    return (
+      <div className="modal fade" id="createChannel" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <form action="/channel/new">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 className="modal-title" id="myModalLabel">New Channel</h4>
+              </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <inpup id="name" name="name" placeHolder="Name" />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" className="btn btn-primary">Create</button>
               </div>
               </form>
           </div>
